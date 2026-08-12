@@ -1,31 +1,58 @@
 SELECT COUNT(*) FROM questions WHERE id_categoria = 2;
 SELECT nombre FROM questions WHERE id_categoria = 6 ORDER BY random() LIMIT 1;
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Quién resultó campeón goleador del Mundial de Futbol Francia 1998?', '[
-  {
-    "a": "Luis Figo",
-    "b": "Zinedine Zidane",
-    "c": "Davor Suker",
-    "d": "Luis Hernández"
-  }]', 'c');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Qué equipo ganó el Super Bowl en 2017?', '[
+-- Categoría 1: Competiciones y Torneos
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Qué selección ganó la Copa Mundial de la FIFA en 2022?', '[
 {
-  "a": "Patriotas de Nueva Inglaterra",
-  "b": "Packers de Indiana",
-  "c": "Broncos de Denver",
-  "d": "Acereros de Pittsburgh"
-}]', 'a');
+  "a": "Francia",
+  "b": "Argentina",
+  "c": "Croacia",
+  "d": "Brasil"
+}]', 'b');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Qué países fueron al mundial de Alemania 2006 por parte de Concacaf?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Cuál es el club con más títulos de UEFA Champions League?', '[
 {
-  "a": "México, Estados y Costa Rica",
-  "b": "México, Estados Unidos y Trinidad y Tobago",
+  "a": "AC Milan",
+  "b": "FC Barcelona",
+  "c": "Real Madrid",
+  "d": "Bayern Múnich"
+}]', 'c');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Qué países fueron representantes de la Concacaf en el Mundial de Alemania 2006?', '[
+{
+  "a": "México, Estados Unidos y Costa Rica",
+  "b": "México, Estados Unidos, Costa Rica y Trinidad y Tobago",
   "c": "México, Honduras y Costa Rica",
   "d": "México, Estados Unidos y Panamá"
 }]', 'b');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Quién es el jugador mexicano con más partidos en Selección Mexicana?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Qué equipo ganó la Copa Libertadores en 2018 tras vencer a su acérrimo rival en Madrid?', '[
+{
+  "a": "Boca Juniors",
+  "b": "River Plate",
+  "c": "Flamengo",
+  "d": "Palmeiras"
+}]', 'b');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Qué equipo de la Liga MX descendió deportivamente en el año 2015?', '[
+{
+  "a": "Leones Negros de la UdeG",
+  "b": "Dorados de Sinaloa",
+  "c": "Lobos BUAP",
+  "d": "Querétaro"
+}]', 'a');
+
+
+-- Categoría 2: Jugadores, Leyendas y Entrenadores
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿Quién resultó campeón goleador (Bota de Oro) del Mundial de Francia 1998?', '[
+{
+  "a": "Luis Figo",
+  "b": "Zinedine Zidane",
+  "c": "Davor Šuker",
+  "d": "Luis Hernández"
+}]', 'c');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿Quién es el jugador con más partidos disputados en la historia de la Selección Mexicana?', '[
 {
   "a": "Jorge Campos",
   "b": "Andrés Guardado",
@@ -33,212 +60,195 @@ INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Q
   "d": "Claudio Suárez"
 }]', 'b');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Qué equipo de la Liga MX descendió en 2015?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿Qué técnico dirigió al Manchester United durante más de 26 años ganando 13 títulos de Premier League?', '[
 {
-  "a": "Leones Negros de UDG",
-  "b": "Dorados de Sinaloa",
-  "c": "Lobos BUAP",
-  "d": "Querétaro"
-}]', 'a');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Cuál es la capital de Ecuador?', '[
-{
-  "a": "Guayaquil",
-  "b": "Quito",
-  "c": "Barcelona",
-  "d": "Cuenca"
-}]', 'b');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Cuál es la capital de Estonia?', '[
-{
-  "a": "Tartu",
-  "b": "Narva",
-  "c": "Elva",
-  "d": "Tallin"
-}]', 'd');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Cuál es el río más extenso de México?', '[
-{
-  "a": "Usumacinta",
-  "b": "Papaloapan",
-  "c": "Bravo",
-  "d": "Lerma"
+  "a": "José Mourinho",
+  "b": "Arsène Wenger",
+  "c": "Sir Alex Ferguson",
+  "d": "Pep Guardiola"
 }]', 'c');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Cuál es la capital del estado de Quintana Roo?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿Qué futbolista apodado "El O Rei" ganó tres Copas del Mundo con Brasil?', '[
 {
-  "a": "Chetumal",
-  "b": "Cancún",
-  "c": "Cozumel",
-  "d": "Felipe Carrillo Puerto"
+  "a": "Garrincha",
+  "b": "Pelé",
+  "c": "Ronaldo Nazário",
+  "d": "Romário"
+}]', 'b');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿Quién ganó el premio Balón de Oro en el año 2007 antes del dominio entre Messi y Cristiano Ronaldo?', '[
+{
+  "a": "Kaká",
+  "b": "Ronaldinho",
+  "c": "Thierry Henry",
+  "d": "Andriy Shevchenko"
 }]', 'a');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (1, '¿Cuántos habitantes tiene la ciudad de Barcelona?', '[
+
+-- Categoría 3: Reglamento, Táctica y Estilos de Juego
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿Cuántas reglas oficiales componen las Reglas del Juego establecidas por la IFAB?', '[
 {
-  "a": "1 813 200 habitantes",
-  "b": "1 620 800 habitantes",
-  "c": "1 100 430 habitantes",
-  "d": "2 005 150 habitantes"
+  "a": "15",
+  "b": "17",
+  "c": "20",
+  "d": "12"
 }]', 'b');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿Cuál fue el presidente de México durante el sexenio 1964 - 1970?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿Qué término táctico describe el estilo de juego de posesión y pases rápidos popularizado por el Barcelona de Guardiola?', '[
 {
-  "a": "Ernesto Zedillo",
-  "b": "Gustavo Díaz Ordaz",
-  "c": "Adolfo López Mateos",
-  "d": "Diego Fernández de Cevallos"
-}]', 'b');
+  "a": "Catenaccio",
+  "b": "Gegenpressing",
+  "c": "Tiki-Taka",
+  "d": "Jogo Bonito"
+}]', 'c');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿En qué año se firmó el tratado Guadalupe-Hidalgo?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿Qué decisión NO puede ser revisada directamente por el VAR durante un partido?', '[
 {
-  "a": "1826",
-  "b": "1833",
-  "c": "1857",
-  "d": "1848"
-}]', 'd');
+  "a": "Goles e infracciones previas",
+  "b": "Tarjetas rojas directas",
+  "c": "Saques de banda o tiros de esquina",
+  "d": "Penaltis marcados o no marcados"
+}]', 'c');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿Qué países firmaron el tratado Guadalupe Hidalgo?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿En qué consiste la infracción de "fuera de juego" (offside)?', '[
 {
-  "a": "México y Estados Unidos",
-  "b": "México y Guatemala",
-  "c": "México y Cuba",
-  "d": "México y Canadá"
+  "a": "Estar en campo rival por delante del balón y del penúltimo adversario al recibir el pase",
+  "b": "Tocar el balón con las manos dentro del área propia",
+  "c": "Faltar al respeto al árbitro desde la banca de suplentes",
+  "d": "Cometer una falta violenta al último hombre"
 }]', 'a');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿Quién era el primer ministro de Gran Bretaña durante la Segunda Guerra Mundial?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿Cómo se llama la estrategia defensiva histórica italiana enfocada en el candado y contragolpe?', '[
 {
-  "a": "Anthony Eden",
-  "b": "Tony Blair",
-  "c": "Winston Churchill",
-  "d": "Neville Chamberlain"
-}]', 'c');
-
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (2, '¿Quién fue el principal contrincante de Barack Obama en las elecciones de 2008?', '[
-{
-  "a": "Al Gore",
-  "b": "Mitt Romney",
-  "c": "Hillary Clinton",
-  "d": "John McCain"
-}]', 'd');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿Quién obtuvo el premio Nobel de Literatura en 2020?', '[
-{
-  "a": "Haruki Murakami",
-  "b": "Louise Glück",
-  "c": "Gunter Grass",
-  "d": "Alice Munro"
+  "a": "Total Voetbal",
+  "b": "Catenaccio",
+  "c": "Kick and Rush",
+  "d": "Park the Bus"
 }]', 'b');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿Quién es el autor de la novela llamada Aura?', '[
-{
-  "a": "José Emilio Pacheco",
-  "b": "Carlos Monsiváis",
-  "c": "Carlos Fuentes",
-  "d": "Alice Munro"
-}]', 'c');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿Cómo se llama el mural que se encuentra en la cúpula del Hospicio Cabañas en Guadalajara, Jalisco?', '[
+-- Categoría 4: Historia y Momentos Icónicos
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿Cómo se le conoce a la histórica victoria de Uruguay frente a Brasil en la final del Mundial de 1950?', '[
 {
-  "a": "El hombre en llamas",
-  "b": "Prometeo",
-  "c": "Retrato de la burguesía",
-  "d": "El cargador de Flores"
+  "a": "El Centenariazo",
+  "b": "El Maracanazo",
+  "c": "El Mineirazo",
+  "d": "El Aztecase"
+}]', 'b');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿En qué año se celebró la primera Copa Mundial de Fútbol de la historia?', '[
+{
+  "a": "1924",
+  "b": "1930",
+  "c": "1938",
+  "d": "1950"
+}]', 'b');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿En qué partido de un Mundial ocurrió el famoso gol conocido como "La Mano de Dios"?', '[
+{
+  "a": "Argentina vs. Inglaterra en 1986",
+  "b": "Argentina vs. Alemania en 1990",
+  "c": "Brasil vs. Italia en 1970",
+  "d": "Uruguay vs. Ghana en 2010"
 }]', 'a');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿Cuál es el nombre del autor del libro La Divina Comedia?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿Qué selección impuso la revolucionaria "Naranja Mecánica" o Fútbol Total en los años 70?', '[
 {
-  "a": "William Shakespeare",
-  "b": "Dante Alighieri",
-  "c": "Esquilo",
-  "d": "Michel de Montaigne"
+  "a": "Alemania",
+  "b": "Países Bajos",
+  "c": "Hungría",
+  "d": "Brasil"
 }]', 'b');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (3, '¿En qué año se pintó el mural Mujeres de Chilpancingo?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿En qué año logró el Arsenal conquistar la Premier League de manera invicta ("Los Invisibles")?', '[
 {
-  "a": "1970",
-  "b": "1947",
-  "c": "1957",
-  "d": "1960"
-}]', 'd');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿Cómo se llama el actor que lleva el papel de Joey en la serie Friends?', '[
-{
-  "a": "Paul Rudd",
-  "b": "Matt LeBlanc",
-  "c": "Charlie Sheen",
-  "d": "Mathew Perry"
+  "a": "1998-1999",
+  "b": "2003-2004",
+  "c": "2007-2008",
+  "d": "2011-2012"
 }]', 'b');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿Cuántas temporadas tuvo la serie Breaking Bad?', '[
+
+-- Categoría 5: Fichajes, Negocios y Estructura Institucional
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿Qué jugador posee el récord del traspaso más caro en la historia del fútbol tras costar 222 millones de euros?', '[
 {
-  "a": "5",
-  "b": "6",
-  "c": "4",
-  "d": "7"
+  "a": "Kylian Mbappé",
+  "b": "Neymar Jr.",
+  "c": "Cristiano Ronaldo",
+  "d": "Jude Bellingham"
+}]', 'b');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿Qué organismo regulador aplica la normativa del "Fair Play Financiero" en el fútbol europeo?', '[
+{
+  "a": "FIFA",
+  "b": "UEFA",
+  "c": "CONMEBOL",
+  "d": "IFAB"
+}]', 'b');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿En qué meses suele abrirse la ventana principal de traspasos (mercado de verano) en la mayoría de ligas europeas?', '[
+{
+  "a": "Enero y Febrero",
+  "b": "Marzo y Abril",
+  "c": "Julio y Agosto",
+  "d": "Noviembre y Diciembre"
+}]', 'c');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿Qué término define el dinero estipulado en el contrato de un jugador para rescindirlo unilateralmente?', '[
+{
+  "a": "Prima de fichaje",
+  "b": "Derecho de formación",
+  "c": "Cláusula de rescisión",
+  "d": "Toque de sueldo"
+}]', 'c');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿Cuál de los siguientes estadios de fútbol tiene mayor capacidad de espectadores en América Latina?', '[
+{
+  "a": "Estadio Azteca",
+  "b": "Estadio Monumental (River Plate)",
+  "c": "Estadio Maracaná",
+  "d": "Estadio Olímpico Universitario"
+}]', 'b');
+
+
+-- Categoría 6: Cultura, Rivalidades y Folclore Futbolero
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Cómo se le denomina tradicionalmente al enfrentamiento entre el Real Madrid y el FC Barcelona?', '[
+{
+  "a": "El Superclásico",
+  "b": "El Clásico",
+  "c": "Derby della Madonnina",
+  "d": "El Clásico Capitalino"
+}]', 'b');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Cuáles son los dos equipos que disputan el afamado "Superclásico" del fútbol argentino?', '[
+{
+  "a": "Racing vs. Independiente",
+  "b": "Boca Juniors vs. River Plate",
+  "c": "San Lorenzo vs. Huracán",
+  "d": "Rosario Central vs. Newell''s"
+}]', 'b');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿A qué rivalidad regional pertenecen los equipos Tigres UANL y Rayados de Monterrey en México?', '[
+{
+  "a": "Clásico Tapatío",
+  "b": "Clásico Regiomontano",
+  "c": "Clásico Joven",
+  "d": "Clásico Capitalino"
+}]', 'b');
+
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Qué término sudamericano se utiliza habitualmente para referirse al ambiente, colorido y cantos del público en la tribuna?', '[
+{
+  "a": "El Folclore o la "Hinchada"",
+  "b": "La Ola",
+  "c": "El Fair Play",
+  "d": "El Mosaico"
 }]', 'a');
 
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿Cómo se llama el actor que estelariza las películas de John Wick?', '[
+INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Cómo se le conoce al clásico de la ciudad de Milán disputado entre el AC Milan y el Inter de Milán?', '[
 {
-  "a": "Will Smith",
-  "b": "Denzel Washington",
-  "c": "Keanu Reeves",
-  "d": "Daniel Craig"
-}]', 'c');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿Cuál banda es la autora del éxito We Will Rock You?', '[
-{
-  "a": "Led Zeppelin",
-  "b": "Queen",
-  "c": "The Ramones",
-  "d": "The White Stripes"
+  "a": "Derby de Italia",
+  "b": "Derby della Madonnina",
+  "c": "Derby della Mole",
+  "d": "Derby del Sole"
 }]', 'b');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (5, '¿Cuántos premios Óscar ha ganado Jennifer Lawrence?', '[
-{
-  "a": "2",
-  "b": "3",
-  "c": "Ninguno",
-  "d": "1"
-}]', 'd');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿Cuáles son los tres estados del agua?', '[
-{
-  "a": "Hirviente, helada y tibia",
-  "b": "Sólido, líquido y gaseoso",
-  "c": "Sólido, tibio y mineral",
-  "d": "Mineral, pura y contaminada"
-}]', 'b');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿Cuál es el símbolo del elemento Plata en la tabla periódica?', '[
-{
-  "a": "Au",
-  "b": "Ag",
-  "c": "Na",
-  "d": "P"
-}]', 'b');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿Cuál es el símbolo del elemento Potasio en la tabla periódica?', '[
-{
-  "a": "Po",
-  "b": "Pt",
-  "c": "Pb",
-  "d": "K"
-}]', 'd');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿Cómo se llama el matemático que acuñó el término Álgebra?', '[
-{
-  "a": "Diofanto de Alejandría",
-  "b": "Al-Jwarizmi",
-  "c": "Celso",
-  "d": "Ptolomeo"
-}]', 'b');
-
-INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (4, '¿Cuáles son los dos tipos de cargas eléctricas?', '[
-{
-  "a": "Átomo y Electrón",
-  "b": "Protón y Neutrón",
-  "c": "Positiva y Negativa",
-  "d": "Física y Luminosa"
-}]', 'c');
 
