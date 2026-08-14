@@ -11,6 +11,8 @@ const rouletteContainer = document.querySelector(".square-container");
 const squares = document.querySelectorAll(".standard");
 const headerTitle = document.querySelector(".header-title");
 const questionContainer = document.querySelector(".question-container");
+const playerMistakes = document.querySelector(".player-mistakes-one");
+const playerPoints = document.querySelector(".player-points-one");
 
 // Game Values
 let isGameActive = localStorage.getItem("isGameActive") || false;
@@ -20,6 +22,11 @@ let points = 0;
 let rounds = 0;
 let roundsLimit = 25;
 let currentLength = -4.86;
+let theAnswer = null;
+let countDown = null;
+const SECOND = 1000;
+let totalAmount = 20 * SECOND;
+let counter = 0;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min - 1)) + 1;
@@ -27,6 +34,7 @@ function getRandomInt(min, max) {
 
 function activeGame() {
   headerTitle.addEventListener("click", () => {
+    localStorage.setItem("isGameActive", true);
     setGameValuesLS();
     isPlayerActive = true;
     marker.computedStyleMap.pointerEvents = "auto";
@@ -39,7 +47,6 @@ function setGameValuesLS() {
   localStorage.setItem("points", 0);
   localStorage.setItem("errors", 0);
   localStorage.setItem("rounds", 0);
-  localStorage.setItem("isGameActive", true);
 }
 
 activeGame();
@@ -59,11 +66,14 @@ marker.addEventListener("click", (e) => {
   rouletteContainer.style.transform = "rotate(-" + currentLength + "deg)";
 
   const gameTime = setTimeout(async () => {
+    //console.log("squares", squares);
     const filtered = Array.from(squares).sort(
       (a, b) =>
         a.getBoundingClientRect().right - b.getBoundingClientRect().right,
     );
     const categorySelected = filtered[0].dataset.category;
+
+    //console.log(filtered[0].dataset.category);
 
     const { data, error } = await supabaseClient.rpc("get_random_question", {
       category: categorySelected,
@@ -80,6 +90,47 @@ marker.addEventListener("click", (e) => {
       questionRevealed,
       categorySelected,
     );
+
+    theAnswer = questionRevealed.correcta;
+
+    const countdownContainer = document.createElement("span");
+    const questionBar = document.createElement("div");
+
+    countdownContainerTemplate(countdownContainer, questionBar);
+
+    clearTimeout(gameTime);
+
+    countDown = setInterval(() => {
+      totalAmount -= SECOND;
+      countdownContainer.innerText = `${totalAmount / SECOND}'`;
+      questionBar.style.width = `${totalAmount / 200}%`;
+
+      if (totalAmount <= 0) {
+        errors++;
+        points -= 5;
+        playerMistakes.innerText = `Errores: ${errors}`;
+        playerPoints.innerText = `Puntos: ${points}`;
+        if (errors > 3) {
+          localStorage.setItem("isGameActive", false);
+          setGameValuesLS();
+          setTimeout(() => {
+            // Template para resultado final cuando se pierde
+          }, 1500);
+          setTimeout(() => {
+            location.reload();
+          }, 4000);
+        }
+        // Reset values
+        let endTime = setTimeout(() => {
+          questionContainer.innerHTML = "";
+          questionContainer.style.display = "none";
+          marker.style.pointerEvents = "auto";
+          totalAmount = 20 * SECOND;
+          clearTimeout(endTime);
+        }, 1500);
+        clearInterval(countDown);
+      }
+    }, SECOND);
   }, 5000);
 });
 
@@ -106,4 +157,13 @@ function questionsTemplate(
     </div>
   </div>
   `;
+}
+
+function countdownContainerTemplate(countdownContainer, questionBar) {
+  countdownContainer.classList.add("countdown");
+  countdownContainer.innerText = "20'";
+  const questionHeader = document.querySelector(".question-header");
+  questionHeader.insertAdjacentElement("beforeend", countdownContainer);
+  questionBar.classList.add("question-bar");
+  questionHeader.insertAdjacentElement("afterend", questionBar);
 }
