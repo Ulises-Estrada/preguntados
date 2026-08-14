@@ -1,5 +1,5 @@
 const { createClient } = supabase;
-const SUPABASE_URL = "https://tdasbzonyzwgrnjkjenx.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://tdasbzonyzwgrnjkjenx.supabase.co";
 const SUPABASE_ANONKEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkYXNiem9ueXp3Z3JuamtqZW54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzQ0ODAsImV4cCI6MjEwMjE1MDQ4MH0.0B70uF_E-bvFRqQAQLWyvM-C_yJEtKIEKHjVUG0KiFU";
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANONKEY);
@@ -10,6 +10,7 @@ const marker = document.querySelector(".marker");
 const rouletteContainer = document.querySelector(".square-container");
 const squares = document.querySelectorAll(".standard");
 const headerTitle = document.querySelector(".header-title");
+const questionContainer = document.querySelector(".question-container");
 
 // Game Values
 let isGameActive = localStorage.getItem("isGameActive") || false;
@@ -63,5 +64,46 @@ marker.addEventListener("click", (e) => {
         a.getBoundingClientRect().right - b.getBoundingClientRect().right,
     );
     const categorySelected = filtered[0].dataset.category;
+
+    const { data, error } = await supabaseClient.rpc("get_random_question", {
+      category: categorySelected,
+    });
+
+    const questionRevealed = data[0];
+    console.log(questionRevealed);
+
+    questionContainer.style.display = "block";
+    const backgroundColorCat = categorySelected.substring(0, 3);
+
+    questionContainer.innerHTML = questionsTemplate(
+      backgroundColorCat,
+      questionRevealed,
+      categorySelected,
+    );
   }, 5000);
 });
+
+function questionsTemplate(
+  backgroundColorCat,
+  questionRevealed,
+  categorySelected,
+) {
+  return `
+  <div class="question">
+    <div class="question-header ${backgroundColorCat}">
+      <h2 class="category-name">${categorySelected}</h2>
+    </div>
+    <div class="question-body">
+      <div class="question-title ${backgroundColorCat}">
+        <h3>${questionRevealed.nombre}</h3>
+      </div>
+      <div class="answers-container">
+        <span data-id="a" class="answer ${backgroundColorCat}">${questionRevealed.opciones[0].a}</span>
+        <span data-id="b" class="answer ${backgroundColorCat}">${questionRevealed.opciones[0].b}</span>
+        <span data-id="c" class="answer ${backgroundColorCat}">${questionRevealed.opciones[0].c}</span>
+        <span data-id="d" class="answer ${backgroundColorCat}">${questionRevealed.opciones[0].d}</span>
+      </div>
+    </div>
+  </div>
+  `;
+}
