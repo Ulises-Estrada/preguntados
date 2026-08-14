@@ -238,7 +238,7 @@ INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿A
 
 INSERT INTO questions (id_categoria, nombre, opciones, correcta) VALUES (6, '¿Qué término sudamericano se utiliza habitualmente para referirse al ambiente, colorido y cantos del público en la tribuna?', '[
 {
-  "a": "El Folclore o la "Hinchada"",
+  "a": "El Folclore o la Hinchada",
   "b": "La Ola",
   "c": "El Fair Play",
   "d": "El Mosaico"
