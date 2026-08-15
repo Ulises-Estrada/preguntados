@@ -13,6 +13,7 @@ const headerTitle = document.querySelector(".header-title");
 const questionContainer = document.querySelector(".question-container");
 const playerMistakes = document.querySelector(".player-mistakes-one");
 const playerPoints = document.querySelector(".player-points-one");
+const finalResultContainer = document.querySelector(".final-result-container");
 
 // Game Values
 let isGameActive = localStorage.getItem("isGameActive") || false;
@@ -66,14 +67,12 @@ marker.addEventListener("click", (e) => {
   rouletteContainer.style.transform = "rotate(-" + currentLength + "deg)";
 
   const gameTime = setTimeout(async () => {
-    //console.log("squares", squares);
     const filtered = Array.from(squares).sort(
       (a, b) =>
         a.getBoundingClientRect().right - b.getBoundingClientRect().right,
     );
-    const categorySelected = filtered[0].dataset.category;
 
-    //console.log(filtered[0].dataset.category);
+    const categorySelected = filtered[0].dataset.category;
 
     const { data, error } = await supabaseClient.rpc("get_random_question", {
       category: categorySelected,
@@ -102,7 +101,7 @@ marker.addEventListener("click", (e) => {
 
     countDown = setInterval(() => {
       totalAmount -= SECOND;
-      countdownContainer.innerText = `${totalAmount / SECOND}'`;
+      countdownContainer.innerText = `${totalAmount / SECOND}s`;
       questionBar.style.width = `${totalAmount / 200}%`;
 
       if (totalAmount <= 0) {
@@ -115,6 +114,7 @@ marker.addEventListener("click", (e) => {
           setGameValuesLS();
           setTimeout(() => {
             // Template para resultado final cuando se pierde
+            finalResultTemplate("Perdiste");
           }, 1500);
           setTimeout(() => {
             location.reload();
@@ -132,6 +132,59 @@ marker.addEventListener("click", (e) => {
       }
     }, SECOND);
   }, 5000);
+});
+
+questionContainer.addEventListener("click", (e) => {
+  const answerSelected = e.target.getAttribute("data-id");
+  if (answerSelected) {
+    clearInterval(countDown);
+    totalAmount = 20 * SECOND;
+
+    if (answerSelected === theAnswer) {
+      points += 5;
+      playerPoints.innerText = `Puntos: ${points}`;
+      // Mensaje de respuesta correcta
+      answerResultTemplate("Correcta", "success");
+      if (rounds === roundsLimit) {
+        localStorage.setItem("isGameActive", false);
+        setGameValuesLS();
+        setTimeout(() => {
+          // Template para el resultado final cuando se gana
+          finalResultTemplate("Ganaste");
+        }, 1500);
+        setTimeout(() => {
+          location.reload();
+        }, 4000);
+      }
+    } else {
+      console.log("No es la respuesta correcta");
+      errors++;
+      points -= 5;
+      playerMistakes.innerText = `Errores: ${errors}`;
+      playerPoints.innerText = `Puntos: ${points}`;
+      if (errors > 3) {
+        localStorage.setItem("isGameActive", false);
+        setGameValuesLS();
+        setTimeout(() => {
+          // Template para resultado final cuando se pierde
+          finalResultTemplate("Perdiste");
+        }, 1500);
+        setTimeout(() => {
+          location.reload();
+        }, 4000);
+      }
+      // Mensaje de respuesta incorrecta
+      answerResultTemplate("Incorrecta", "error");
+    }
+
+    let endTime = setTimeout(() => {
+      questionContainer.innerHTML = "";
+      questionContainer.style.display = "none";
+      clearTimeout(endTime);
+    }, 1500);
+
+    marker.style.pointerEvents = "auto";
+  }
 });
 
 function questionsTemplate(
@@ -161,9 +214,30 @@ function questionsTemplate(
 
 function countdownContainerTemplate(countdownContainer, questionBar) {
   countdownContainer.classList.add("countdown");
-  countdownContainer.innerText = "20'";
+  countdownContainer.innerText = "20s";
   const questionHeader = document.querySelector(".question-header");
   questionHeader.insertAdjacentElement("beforeend", countdownContainer);
   questionBar.classList.add("question-bar");
   questionHeader.insertAdjacentElement("afterend", questionBar);
+}
+
+function answerResultTemplate(message, resultColor) {
+  const questionBody = document.querySelector(".question-body");
+  const resultTemplate = document.createElement("div");
+  resultTemplate.classList.add("result-container");
+  if (resultColor === "success") {
+    resultTemplate.classList.add("success-answer");
+  } else {
+    resultTemplate.classList.add("wrong-answer");
+  }
+  resultTemplate.innerText = message;
+  questionBody.insertAdjacentElement("beforeend", resultTemplate);
+}
+
+function finalResultTemplate(message) {
+  finalResultContainer.style.display = "block";
+  const finalResultBody = document.createElement("div");
+  finalResultBody.innerText = message;
+  finalResultBody.classList.add("final-result");
+  finalResultContainer.append(finalResultBody);
 }
