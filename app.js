@@ -79,7 +79,7 @@ marker.addEventListener("click", (e) => {
     });
 
     const questionRevealed = data[0];
-    console.log(questionRevealed);
+    //console.log(questionRevealed);
 
     questionContainer.style.display = "block";
     const backgroundColorCat = categorySelected.substring(0, 3);
