@@ -9,7 +9,7 @@ const generalContainer = document.querySelector(".general-container");
 const marker = document.querySelector(".marker");
 const rouletteContainer = document.querySelector(".square-container");
 const squares = document.querySelectorAll(".standard");
-const headerTitle = document.querySelector(".header-title");
+const headerPlay = document.querySelector("#header-play");
 const questionContainer = document.querySelector(".question-container");
 const playerMistakes = document.querySelector(".player-mistakes-one");
 const playerPoints = document.querySelector(".player-points-one");
@@ -34,13 +34,13 @@ function getRandomInt(min, max) {
 }
 
 function activeGame() {
-  headerTitle.addEventListener("click", () => {
+  headerPlay.addEventListener("click", () => {
     localStorage.setItem("isGameActive", true);
     setGameValuesLS();
     isPlayerActive = true;
     marker.computedStyleMap.pointerEvents = "auto";
-    headerTitle.style.pointerEvents = "none";
-    headerTitle.innerText = `Ronda 0 / ${roundsLimit}`;
+    headerPlay.style.pointerEvents = "none";
+    headerPlay.innerText = `Ronda 0 / ${roundsLimit}`;
   });
 }
 
@@ -62,7 +62,7 @@ marker.addEventListener("click", (e) => {
 
   localStorage.getItem("rounds");
   rounds++;
-  headerTitle.innerText = `Ronda ${rounds} / ${roundsLimit}`;
+  headerPlay.innerText = `Ronda ${rounds} / ${roundsLimit}`;
   currentLength += 900 + getRandomInt(0, 37) * 9.729;
   rouletteContainer.style.transform = "rotate(-" + currentLength + "deg)";
 
@@ -157,7 +157,7 @@ questionContainer.addEventListener("click", (e) => {
         }, 4000);
       }
     } else {
-      console.log("No es la respuesta correcta");
+      //console.log("No es la respuesta correcta");
       errors++;
       points -= 5;
       playerMistakes.innerText = `Errores: ${errors}`;
