@@ -14,7 +14,6 @@ body {
 /* Header and multiplaer */
 
 .main-header {
-  /*background-color: #63e3cd;*/
   background-image: url("img/header-background.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -28,20 +27,10 @@ body {
   color: #e6db5e;
   padding: 0.6em;
   font-size: 50px;
-  /*font-style: italic;*/
   font-family: "Luckiest Guy";
   text-transform: uppercase;
   text-shadow: -10px 10px 10px black;
 }
-
-/*
-#header-button-play {
-  border: 3px solid white;
-  border-radius: 40px;
-  padding: 10px;
-  background-color: #ffaf0a;
-}
-  */
 
 #header-play {
   border: 5px solid white;
@@ -52,12 +41,12 @@ body {
   margin: 0.3em;
   padding: 0.6em;
   font-size: 40px;
-  /*font-style: italic;*/
   font-family: "Luckiest Guy";
   text-transform: uppercase;
   cursor: pointer;
   transition: all 500ms;
 }
+
 #header-play:hover {
   font-size: 50px;
   border-radius: 65px;
@@ -173,10 +162,21 @@ body {
   background-color: #0091fa;
   left: 49.8%;
 }
+.square-one-img {
+  opacity: 40%;
+  width: 40%;
+  text-align: center;
+}
 
 .square-two {
   background-color: #fbfe65;
   transform: rotate(60deg);
+}
+
+.square-two-img {
+  opacity: 40%;
+  width: 40%;
+  text-align: center;
 }
 
 .square-three {
@@ -184,9 +184,21 @@ body {
   transform: rotate(120deg);
 }
 
+.square-three-img {
+  opacity: 40%;
+  width: 40%;
+  text-align: center;
+}
+
 .square-four {
   background-color: #3fa154;
   transform: rotate(180deg);
+}
+
+.square-four-img {
+  opacity: 40%;
+  width: 40%;
+  text-align: center;
 }
 
 .square-five {
@@ -194,9 +206,21 @@ body {
   transform: rotate(240deg);
 }
 
+.square-five-img {
+  opacity: 40%;
+  width: 40%;
+  text-align: center;
+}
+
 .square-six {
   background-color: #f47111;
   transform: rotate(300deg);
+}
+
+.square-six-img {
+  opacity: 40%;
+  width: 40%;
+  text-align: center;
 }
 
 .options-container {

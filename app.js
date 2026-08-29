@@ -38,7 +38,7 @@ function activeGame() {
     localStorage.setItem("isGameActive", true);
     setGameValuesLS();
     isPlayerActive = true;
-    marker.computedStyleMap.pointerEvents = "auto";
+    marker.style.pointerEvents = "auto";
     headerPlay.style.pointerEvents = "none";
     headerPlay.innerText = `Ronda 0 / ${roundsLimit}`;
   });
