@@ -8,7 +8,10 @@
 body {
   background-image: url("img/body-background.jpg");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Header and multiplaer */
@@ -26,7 +29,7 @@ body {
 #header-title {
   color: #e6db5e;
   padding: 0.6em;
-  font-size: 50px;
+  font-size: clamp(30px, 5vw, 50px);
   font-family: "Luckiest Guy";
   text-transform: uppercase;
   text-shadow: -10px 10px 10px black;
@@ -40,7 +43,7 @@ body {
   color: white;
   margin: 0.3em;
   padding: 0.6em;
-  font-size: 40px;
+  font-size: clamp(20px, 4vw, 40px);
   font-family: "Luckiest Guy";
   text-transform: uppercase;
   cursor: pointer;
@@ -53,6 +56,25 @@ body {
   background-color: #25f3ed;
   border: 5px solid #ff5055;
   color: #ff5055;
+}
+
+@media (max-width: 600px) {
+  .main-header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  #header-title {
+    padding: 0.2em;
+    text-align: center;
+  }
+
+  #header-play {
+    margin: 0;
+    font-size: 24px;
+    padding: 0.5em 0.8em;
+  }
 }
 
 .game-code {
@@ -82,21 +104,101 @@ body {
   position: relative;
 }
 
+.roulette-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Escritorio */
+.square-container {
+  width: 800px;
+  height: 800px;
+  background-color: #e5e5e5;
+  border-radius: 50%;
+  border: 15px solid #481f0e;
+  box-shadow: 0px 0px 15px black;
+  position: relative;
+  overflow: hidden;
+  transition: 1s;
+  margin: 2em auto;
+}
+
 .marker {
   width: 0;
   height: 0;
+
   border-top: 25px solid transparent;
   border-bottom: 25px solid transparent;
-  position: absolute;
   border-left: 120px solid white;
-  top: 52.7%;
+
+  position: absolute;
+
+  top: 50%;
+  left: calc(50% - 400px);
+
+  transform: translateY(-50%);
+
   z-index: 10;
-  left: 14%;
   cursor: pointer;
   background: transparent;
   border-radius: 7px;
 }
 
+/* TABLET */
+
+@media (max-width: 850px) {
+  .square-container {
+    zoom: 0.85;
+  }
+
+  .marker {
+    transform: translateY(-50%) scale(0.85);
+  }
+}
+
+/* TABLET PEQUEÑA */
+
+@media (max-width: 700px) {
+  .square-container {
+    zoom: 0.67;
+  }
+
+  .marker {
+    left: -5%;
+    transform: translateY(-50%) scale(0.7);
+  }
+}
+
+/* SMARTPHONE */
+
+@media (max-width: 500px) {
+  .square-container {
+    zoom: 0.5;
+  }
+
+  .marker {
+    left: -5%;
+    transform: translateY(-50%) scale(0.5);
+  }
+}
+
+/* SMARTPHONE PEQUEÑO */
+
+@media (max-width: 400px) {
+  .square-container {
+    zoom: 0.43;
+  }
+
+  .marker {
+    left: -5%;
+    transform: translateY(-50%) scale(0.43);
+  }
+}
+
+/*
 @media (max-width: 1200px) {
   .marker {
     left: 12%;
@@ -126,19 +228,7 @@ body {
     left: 2%;
   }
 }
-
-.square-container {
-  width: 800px;
-  height: 800px;
-  background-color: #e5e5e5;
-  border-radius: 50%;
-  border: 15px solid #481f0e;
-  box-shadow: 0px 0px 15px black;
-  position: relative;
-  overflow: hidden;
-  transition: 1s;
-  margin: 2em auto;
-}
+  */
 
 .standard {
   height: 51%;
@@ -224,9 +314,12 @@ body {
 }
 
 .options-container {
-  width: auto;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 0 15px;
 }
 
 /*
@@ -249,6 +342,22 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+@media (max-width: 600px) {
+  .category-container {
+    width: calc(50% - 10px);
+  }
+
+  .name-category {
+    font-size: 15px;
+  }
+
+  .color-category {
+    width: 35px;
+    height: 25px;
+    flex-shrink: 0;
+  }
 }
 
 .color-category {
@@ -295,13 +404,12 @@ body {
 /* question container */
 
 .question-container {
-  position: absolute;
+  position: fixed;
+  inset: 0;
   background: rgba(0, 0, 0, 0.6);
   width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  z-index: 10;
+  height: 100dvh;
+  z-index: 100;
   display: none;
 }
 
@@ -309,9 +417,12 @@ body {
   position: relative;
   background: transparent;
   z-index: 15;
-  width: 600px;
-  top: 25%;
-  left: 35%;
+
+  width: min(600px, 92vw);
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .question-header {
@@ -346,7 +457,7 @@ body {
 }
 
 h2.category-name {
-  font-size: 30px;
+  font-size: clamp(20px, 5vw, 30px);
   font-family: "Chewy";
   text-transform: capitalize;
 }
@@ -362,8 +473,9 @@ h2.category-name {
 
 .question-title h3 {
   text-align: center;
-  font-size: 26px;
+  font-size: clamp(20px, 4vw, 26px);
   font-family: "Chewy";
+  line-height: 1.2;
 }
 
 .answers-container {
@@ -375,12 +487,12 @@ h2.category-name {
 }
 
 .answer {
-  padding: 0.5em;
-  width: 400px;
-  margin: 1em auto;
+  padding: 0.7em;
+  width: min(400px, 85%);
+  margin: 0.7em auto;
   border-radius: 15px;
   text-align: center;
-  font-size: 23px;
+  font-size: clamp(18px, 4vw, 23px);
   font-family: "Chewy";
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
@@ -400,15 +512,20 @@ h2.category-name {
 /* result container */
 
 .result-container {
-  width: 300px;
-  height: 80px;
+  width: min(300px, 80vw);
+  min-height: 80px;
+  height: auto;
+
   position: absolute;
   z-index: 30;
+
   top: 15%;
-  left: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+
   color: white;
   text-align: center;
-  font-size: 28px;
+  font-size: clamp(22px, 5vw, 28px);
   font-family: "Chewy";
   padding: 1em;
   border-radius: 15px;
@@ -460,6 +577,22 @@ h2.category-name {
   margin: 0.5em 0;
 }
 
+@media (max-width: 600px) {
+  .players-container {
+    justify-content: center;
+  }
+
+  .player-stats-container {
+    width: min(250px, 90%);
+    margin: 0.5rem auto;
+  }
+
+  .player-stats-container span {
+    font-size: 17px;
+    margin: 0.25em 0;
+  }
+}
+
 .final-result-container {
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
@@ -473,11 +606,13 @@ h2.category-name {
 
 .final-result {
   position: absolute;
-  font-size: 100px;
+  width: 100%;
+  padding: 20px;
+  font-size: clamp(50px, 15vw, 100px);
   font-family: "Luckiest Guy";
   color: white;
   text-align: center;
-  top: 40%;
-  left: 40%;
-  z-index: 35;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
