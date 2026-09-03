@@ -74,6 +74,14 @@ marker.addEventListener("click", (e) => {
 
     const categorySelected = filtered[0].dataset.category;
 
+    // Quitar selección anterior
+    document.querySelectorAll(".standard").forEach((square) => {
+      square.classList.remove("selected");
+    });
+
+    // Resaltar la categoría seleccionada
+    categorySelected && filtered[0].classList.add("selected");
+
     const { data, error } = await supabaseClient.rpc("get_random_question", {
       category: categorySelected,
     });

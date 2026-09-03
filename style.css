@@ -248,6 +248,22 @@ body {
   left: 159px;
 }
 
+/* Imágenes de las rebanadas */
+.standard img {
+  opacity: 0.35;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+/* Imagen de la rebanada seleccionada */
+.standard.selected img {
+  opacity: 1;
+  transform: scale(1.15);
+  filter: brightness(1.25) drop-shadow(0 0 8px white);
+}
+
 .square-one {
   background-color: #0091fa;
   left: 49.8%;
