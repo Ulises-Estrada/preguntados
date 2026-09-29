@@ -24,9 +24,10 @@ let rounds = 0;
 let roundsLimit = 25;
 let currentLength = -4.86;
 let theAnswer = null;
+let answerLocked = false;
 let countDown = null;
 const SECOND = 1000;
-let totalAmount = 20 * SECOND;
+let totalAmount = 25 * SECOND;
 let counter = 0;
 
 function getRandomInt(min, max) {
@@ -99,6 +100,7 @@ marker.addEventListener("click", (e) => {
     );
 
     theAnswer = questionRevealed.correcta;
+    answerLocked = false;
 
     const countdownContainer = document.createElement("span");
     const questionBar = document.createElement("div");
@@ -113,11 +115,19 @@ marker.addEventListener("click", (e) => {
       questionBar.style.width = `${totalAmount / 200}%`;
 
       if (totalAmount <= 0) {
+        // Bloquear cualquier respuesta cuando termina el tiempo
+        answerLocked = true;
+
+        // Desactivar las opciones
+        document.querySelectorAll(".answer").forEach((answer) => {
+          answer.style.pointerEvents = "none";
+        });
+
         errors++;
         points -= 5;
         playerMistakes.innerText = `Errores: ${errors}`;
         playerPoints.innerText = `Puntos: ${points}`;
-        if (errors > 3) {
+        if (errors > 5) {
           localStorage.setItem("isGameActive", false);
           setGameValuesLS();
           setTimeout(() => {
@@ -133,7 +143,7 @@ marker.addEventListener("click", (e) => {
           questionContainer.innerHTML = "";
           questionContainer.style.display = "none";
           marker.style.pointerEvents = "auto";
-          totalAmount = 20 * SECOND;
+          totalAmount = 25 * SECOND;
           clearTimeout(endTime);
         }, 1500);
         clearInterval(countDown);
@@ -144,9 +154,21 @@ marker.addEventListener("click", (e) => {
 
 questionContainer.addEventListener("click", (e) => {
   const answerSelected = e.target.getAttribute("data-id");
+
   if (answerSelected) {
+    // Si ya respondió esta pregunta, ignorar cualquier otro clic
+    if (answerLocked) return;
+
+    // Bloquear inmediatamente la pregunta
+    answerLocked = true;
+
     clearInterval(countDown);
-    totalAmount = 20 * SECOND;
+    totalAmount = 25 * SECOND;
+
+    // Deshabilitar visualmente las respuestas
+    document.querySelectorAll(".answer").forEach((answer) => {
+      answer.style.pointerEvents = "none";
+    });
 
     if (answerSelected === theAnswer) {
       points += 5;
@@ -222,7 +244,7 @@ function questionsTemplate(
 
 function countdownContainerTemplate(countdownContainer, questionBar) {
   countdownContainer.classList.add("countdown");
-  countdownContainer.innerText = "20s";
+  countdownContainer.innerText = "25s";
   const questionHeader = document.querySelector(".question-header");
   questionHeader.insertAdjacentElement("beforeend", countdownContainer);
   questionBar.classList.add("question-bar");
