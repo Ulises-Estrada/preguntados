@@ -5,6 +5,19 @@
   font-family: "Josefin Sans", sans-serif;
 }
 
+/* Paleta Ubaldo Show */
+:root {
+  --ubaldo-teal: #0b6b5b;
+  --ubaldo-yellow: #e6db5e;
+  --ubaldo-orange: #ffaf0a;
+  --ubaldo-cyan: #25f3ed;
+  --ubaldo-coral: #ff5055;
+  --ubaldo-pink: #f05aa6;
+  --ubaldo-purple: #7a4fa3;
+  --ubaldo-green: #35a85b;
+  --ubaldo-dark: #123f36;
+}
+
 body {
   background-image: url("img/body-background.jpg");
   background-repeat: no-repeat;
@@ -116,9 +129,9 @@ body {
 .square-container {
   width: 800px;
   height: 800px;
-  background-color: #e5e5e5;
+  background-color: #f4f8f6;
   border-radius: 50%;
-  border: 15px solid #481f0e;
+  border: 15px solid var(--ubaldo-dark);
   box-shadow: 0px 0px 15px black;
   position: relative;
   overflow: hidden;
@@ -264,8 +277,9 @@ body {
   filter: brightness(1.25) drop-shadow(0 0 8px white);
 }
 
+/* Colores de la ruleta: turquesa, amarillo, coral, verde, rosa y naranja */
 .square-one {
-  background-color: #0091fa;
+  background-color: var(--ubaldo-cyan);
   left: 49.8%;
 }
 .square-one-img {
@@ -275,7 +289,7 @@ body {
 }
 
 .square-two {
-  background-color: #fbfe65;
+  background-color: var(--ubaldo-yellow);
   transform: rotate(60deg);
 }
 
@@ -286,7 +300,7 @@ body {
 }
 
 .square-three {
-  background-color: #ff747c;
+  background-color: var(--ubaldo-coral);
   transform: rotate(120deg);
 }
 
@@ -297,7 +311,7 @@ body {
 }
 
 .square-four {
-  background-color: #3fa154;
+  background-color: var(--ubaldo-green);
   transform: rotate(180deg);
 }
 
@@ -308,7 +322,7 @@ body {
 }
 
 .square-five {
-  background-color: #fe79d9;
+  background-color: var(--ubaldo-pink);
   transform: rotate(240deg);
 }
 
@@ -319,7 +333,7 @@ body {
 }
 
 .square-six {
-  background-color: #f47111;
+  background-color: var(--ubaldo-orange);
   transform: rotate(300deg);
 }
 
@@ -385,27 +399,27 @@ body {
 }
 
 .com {
-  background-color: #0091fa;
+  background-color: var(--ubaldo-cyan);
 }
 
 .jug {
-  background-color: #fbfe65;
+  background-color: var(--ubaldo-yellow);
 }
 
 .reg {
-  background-color: #ff747c;
+  background-color: var(--ubaldo-coral);
 }
 
 .his {
-  background-color: #3fa154;
+  background-color: var(--ubaldo-green);
 }
 
 .fic {
-  background-color: #fe79d9;
+  background-color: var(--ubaldo-pink);
 }
 
 .cul {
-  background-color: #f47111;
+  background-color: var(--ubaldo-orange);
 }
 
 .name-category {
